@@ -53,11 +53,11 @@ function showQuestion(question) {
     questionEl.innerHTML = question.question;
     question.answers.forEach(answer => {
         const button = document.createElement('button')
-        button.innerHTML = answer.answer
-        //answerBtnEl.innerHTML = answer.a
+        button.innerHTML = answer
+        //answerBtnEl.innerHTML = a.answers
         button.classList.add('btn')
 
-            button.addEventListener('click', selectAnswer)
+            answerBtnEl.addEventListener('click', selectAnswer)
             answerBtnEl.appendChild(button)
     }
     )}
@@ -74,7 +74,12 @@ function resetState() {
 
 
 function selectAnswer(e) {
-    
+    const selectedButton = e.target
+    const correct = selectedButton.dataset.correct
+    setStatusClass(document.body, correct)
+    Array.from(answerBtnEl.children).forEach(button => {
+        setStatusClass(button, button.dataset.correct)
+    })
     if (shuffle.length > currentQuestionIndex + 1) {
         currentQuestionIndex++
         setNextQuestion()
@@ -104,21 +109,16 @@ function setStatusClass(element, correct) {
 
 
 
-       
-
-let a = ''
-
-
 
 const questions = [
 
     {
     question: "question1",
     answers: [
-    {a: "a",
-    a: "b",
-    a: "c",
-    a: "d"}],
+    "a",
+    "b",
+    "c",
+    "d"],
     correct: 'a',
     },
     {
