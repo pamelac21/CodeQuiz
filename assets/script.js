@@ -5,7 +5,7 @@ const questionEl = document.querySelector('.question');
 const startBtn = document.querySelector('#start');
 const choices = document.querySelector('.choices')
 const hidden = document.querySelector('.quiz');
-const answerBtnEl  = document.querySelector('.btn');
+const answerBtnEl  = document.querySelector('.choices');
 //const  = document.querySelector('');
 
 startBtn.addEventListener('click', startGame);
@@ -54,11 +54,11 @@ function showQuestion(question) {
     question.answers.forEach(answer => {
         const button = document.createElement('button')
         button.innerHTML = answer
-        //answerBtnEl.innerHTML = a.answers
+        choices.append(button)
         button.classList.add('btn')
-
-            answerBtnEl.addEventListener('click', selectAnswer)
-            answerBtnEl.appendChild(button)
+        //questionEl.append(button)
+            //answerBtnEl.addEventListener('click', selectAnswer)
+            //answerBtnEl.appendChild(button)
     }
     )}
 
@@ -123,38 +123,38 @@ const questions = [
     },
     {
     question: "question2",
-    answers: [{
-    a: "e",
-    a: "f", 
-    a: "g", 
-    a: "h"}],
+    answers: [
+    "e",
+    "f", 
+    "g", 
+    "h"],
     correct: 'f',
     },
     {
     question: "question3",
-    answers: [{
-    a: "i",
-    a: "j",
-    a: "k",
-    a: "l"}],
+    answers: [
+    "i",
+    "j",
+    "k",
+    "l"],
     correct: "k",
     },
     {
     question: "question4",
-    answers: [{
-    a: "m",
-    a: "n",
-    a: "o",
-    a: "p"}],
+    answers: [
+    "m",
+    "n",
+    "o",
+    "p"],
     correct: 'm',
     },
     {
     question: "question5",
-    answers: [{
-    a: "q",
-    a: "r",
-    a: "s",
-    a: "t"}],
+    answers: [
+    "q",
+    "r",
+    "s",
+    "t"],
     correct: 's',}
 ]      
 
