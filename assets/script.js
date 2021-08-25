@@ -39,16 +39,21 @@ function startGame() {
         let timeInterval = setInterval(function() {
             if (timeLeft > 1) {
                 timerEl.textContent = 'Timer: ' +timeLeft + ' seconds'
-                timeLeft--
+                timeLeft-1
             } else if (timeLeft === 1) {
                 timerEl.textContent = 'Timer: ' +timeLeft + ' second'
-            } else {
+            } else if (timeLeft <= 0) {
                 timerEl.textContent = ''
                 clearInterval(timeInterval)
                 endQuiz()
                 
-            }}, 1000)
+}
+document.querySelector('.timer').value = 60 - timeLeft;
+timeLeft -= 1;
+}, 1000)
 
+
+    
 
         shuffle = questions.sort(() => Math.random() - .5)
         currentQuestionIndex = 0
@@ -60,6 +65,9 @@ function setNextQuestion() {
     resetState() 
     showQuestion(shuffle[currentQuestionIndex])
 
+ //   if (currentQuestionIndex +1 === questions.length) {
+ //       endQuiz();}
+
     
 }
 
@@ -70,8 +78,9 @@ function showQuestion(question) {
         button.innerHTML = answer
         choices.append(button)
         button.classList.add('btn')  
-    }
-    )}
+    })
+
+}
 
 
 
@@ -80,6 +89,9 @@ function resetState() {
     while (answerBtnEl.firstChild) {
         answerBtnEl.removeChild
         (answerBtnEl.firstChild)
+    }
+    if (currentQuestionIndex === questions.length) {
+        endQuiz();
     }
 }
 
@@ -172,13 +184,18 @@ const questions = [
 ]      
 
 
-//function endQuiz() {
-    
-
+function endQuiz() {
     //hide timer+questions+answers
+    document.querySelector('.quiz').setAttribute('style', 'display: none')
+    document.querySelector('.question').setAttribute('style', 'display: none')
+    document.querySelector('.choices').setAttribute('style', 'display: none')
     //show final score
+
+
     //make button for submit score
-//}
+
+
+}
 
        
 
@@ -194,10 +211,8 @@ const questions = [
 
 
 
-
 /*
-
-            // Loop over every question object
+           
          for (var i = 0; i < questions.length; i++) {
          // Compare answers
             if (
