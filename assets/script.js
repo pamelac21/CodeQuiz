@@ -1,12 +1,13 @@
 //change announce, question, answers for each page
 const h1 = document.querySelector('h1');
 const questionEl = document.querySelector('.question');
-//const choices = Array.from(document.querySelectorAll('.choices'));
 const startBtn = document.querySelector('#start');
 const choices = document.querySelector('.choices')
 const hidden = document.querySelector('.quiz');
 const answerBtnEl  = document.querySelector('.choices');
-//const  = document.querySelector('');
+const timerEl = document.querySelector('.timer')
+//const feedbackEl = document.querySelector('.feedback')
+
 
 startBtn.addEventListener('click', startGame);
 answerBtnEl.addEventListener('click', () => {
@@ -14,18 +15,14 @@ answerBtnEl.addEventListener('click', () => {
     setNextQuestion()
 })
 
-let currentQuestion = {}
-let acceptingAnswers = true
 let score = 0
-let counter = 0
-let availableQuestions = []
 let answers = []
 let shuffle, currentQuestionIndex
 
 
+
 function startGame() {
     console.log('Started')
-//ADD timer::start timer
 
     //make quiz visible
     document.querySelector('.quiz').setAttribute('style', 'display: block')
@@ -36,8 +33,23 @@ function startGame() {
     document.querySelector('#start').setAttribute('style', 'display: none')
     document.querySelector('h1').setAttribute('style', 'display: none')
     document.querySelector('p').setAttribute('style', 'display: none')
-        //document.querySelector('.box').innerHTML += '<h1> hey </h1>' ~display specific text in element~
-        
+
+    
+        var timeLeft = 60;
+        let timeInterval = setInterval(function() {
+            if (timeLeft > 1) {
+                timerEl.textContent = 'Timer: ' +timeLeft + ' seconds'
+                timeLeft--
+            } else if (timeLeft === 1) {
+                timerEl.textContent = 'Timer: ' +timeLeft + ' second'
+            } else {
+                timerEl.textContent = ''
+                clearInterval(timeInterval)
+                endQuiz()
+                
+            }}, 1000)
+
+
         shuffle = questions.sort(() => Math.random() - .5)
         currentQuestionIndex = 0
         setNextQuestion()
@@ -45,8 +57,10 @@ function startGame() {
 
 
 function setNextQuestion() {
-    resetState()
+    resetState() 
     showQuestion(shuffle[currentQuestionIndex])
+
+    
 }
 
 function showQuestion(question) {
@@ -55,10 +69,7 @@ function showQuestion(question) {
         const button = document.createElement('button')
         button.innerHTML = answer
         choices.append(button)
-        button.classList.add('btn')
-        //questionEl.append(button)
-            //answerBtnEl.addEventListener('click', selectAnswer)
-            //answerBtnEl.appendChild(button)
+        button.classList.add('btn')  
     }
     )}
 
@@ -80,32 +91,34 @@ function selectAnswer(e) {
     Array.from(answerBtnEl.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
-    if (shuffle.length > currentQuestionIndex + 1) {
-        currentQuestionIndex++
-        setNextQuestion()
-    } else {
-        document.querySelector('#start').setAttribute('style', 'display: block')
-        startBtn.innerHTML = 'Return Home'
-    }
-
+    
 }
+
+//document.querySelector('.box').innerHTML += '<h1> hey </h1>' ~display specific text in element~
+
+
+
+
 
 function setStatusClass(element, correct) {
     clearStatusClass(element)
-    if (correct) {
-        element.classList.add('correct')
-        document.getElementById('correct').style.visibility = 'visible';
-    } else {
-        element.classList.add('wrong')
-        document.querySelector('.wrong').setAttribute('style', 'display: block')
-    }
-    }
-
-    function clearStatusClass(element) {
-            element.classList.remove('correct')
-            element.classList.remove('wrong')
-        }
+        if (correct) {
+            element.classList.add('correct')
+            document.getElementById('correct').style.visibility = 'visible';
+        } else {
+            element.classList.add('wrong')
+            document.querySelector('.wrong').setAttribute('style', 'display: block')
         
+
+        }
+    }
+    function clearStatusClass(element) {
+        element.classList.remove('correct')
+        element.classList.remove('wrong')
+
+}
+   
+   
 
 
 
@@ -119,7 +132,7 @@ const questions = [
     "b",
     "c",
     "d"],
-    correct: 'a',
+    correct: "a",
     },
     {
     question: "question2",
@@ -128,7 +141,7 @@ const questions = [
     "f", 
     "g", 
     "h"],
-    correct: 'f',
+    correct: "f",
     },
     {
     question: "question3",
@@ -159,6 +172,13 @@ const questions = [
 ]      
 
 
+//function endQuiz() {
+    
+
+    //hide timer+questions+answers
+    //show final score
+    //make button for submit score
+//}
 
        
 
@@ -166,7 +186,7 @@ const questions = [
 
   /*//what to do when an answer is chosen by the user:: 
     document.querySelector('answers').onclick = function() {
-      if(a === correct, .correct is unhidden, score++)
+      if(answer === correct, .correct is unhidden, score++)
       if(a === wrong, .wrong is unhidden, 10 seconds decremented from timer)
         currentQuestionIndex++ //load next question
         setNextQuestion()
@@ -175,9 +195,9 @@ const questions = [
 
 
 
+/*
 
-
-         /*     // Loop over every question object
+            // Loop over every question object
          for (var i = 0; i < questions.length; i++) {
          // Compare answers
             if (
@@ -190,8 +210,8 @@ const questions = [
             } else {
            alert('Wrong!');
          }
-         }*/
-
+         }
+*/
 
 //FINISHED QUIZ save score to local storage
 //return score, txt box to enter name w/ submit button.
@@ -225,12 +245,24 @@ for (var i = 0; i < savedScore.length; i++) {
 
 
 //time counter in top right corner. make it DECREMENT-10 sec for each wrong answer and stop decrement at 0
+*/ 
 
-
-
+/*
+if(shuffle.length = currentQuestionIndex +1) {
+            currentQuestionIndex++
+            setNextQuestion()
+        } else {
+            //hide quiz
+            document.querySelector('.quiz').setAttribute('style', 'display: none')
+            document.querySelector('.question').setAttribute('style', 'display: none')
+            document.querySelector('.choices').setAttribute('style', 'display: none')
+            //show end screen
+            document.querySelector('#start').setAttribute('style', 'display: block')
+            startBtn.innerHTML = 'Return Home'
+        }
+*/
 
 //highscores button at top left corner??
 
-startGame() */
 
 
