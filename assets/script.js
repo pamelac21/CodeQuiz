@@ -5,8 +5,8 @@ const startBtn = document.querySelector('#start');
 const choices = document.querySelector('.choices')
 const hidden = document.querySelector('.quiz');
 const answerBtnEl  = document.querySelector('.choices');
-const timerEl = document.querySelector('.timer')
-//const feedbackEl = document.querySelector('.feedback')
+let timerEl = document.querySelector('.timer')
+const feedbackEl = document.querySelector('.feedback')
 
 
 startBtn.addEventListener('click', startGame);
@@ -64,10 +64,6 @@ timeLeft -= 1;
 function setNextQuestion() {
     resetState() 
     showQuestion(shuffle[currentQuestionIndex])
-
- //   if (currentQuestionIndex +1 === questions.length) {
- //       endQuiz();}
-
     
 }
 
@@ -78,11 +74,30 @@ function showQuestion(question) {
         button.innerHTML = answer
         choices.append(button)
         button.classList.add('btn')  
+ // attach click event listener to each choice
+        button.onclick = userAnswer
     })
 
 }
 
-
+function userAnswer() {
+    
+    if (answers.button === questions.correct) {
+        console.log(answers.button === questions.correct)
+        score++
+        feedbackEl.textContent = "Correct!"
+    } else if (correct === false) 
+    console.log(correct === false)
+        //timeLeft -= 10
+        //timeLeft.textContent = timerEl
+        feedbackEl.textContent = "Wrong"
+    
+    feedbackEl.setAttribute("class", "feedback");
+    setTimeout(function() {
+      feedbackEl.setAttribute("class", "feedback hide");
+    }, 1000);
+    
+}
 
 function resetState() {
     clearStatusClass(document.body)
@@ -96,6 +111,7 @@ function resetState() {
 }
 
 
+/*
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
@@ -106,11 +122,9 @@ function selectAnswer(e) {
     
 }
 
-//document.querySelector('.box').innerHTML += '<h1> hey </h1>' ~display specific text in element~
 
 
-
-
+*/
 
 function setStatusClass(element, correct) {
     clearStatusClass(element)
@@ -144,7 +158,7 @@ const questions = [
     "b",
     "c",
     "d"],
-    correct: "a",
+    correct:"a",
     },
     {
     question: "question2",
@@ -153,7 +167,7 @@ const questions = [
     "f", 
     "g", 
     "h"],
-    correct: "f",
+    correct:1,
     },
     {
     question: "question3",
@@ -162,7 +176,7 @@ const questions = [
     "j",
     "k",
     "l"],
-    correct: "k",
+    correct:1,
     },
     {
     question: "question4",
@@ -171,7 +185,7 @@ const questions = [
     "n",
     "o",
     "p"],
-    correct: 'm',
+    correct:1,
     },
     {
     question: "question5",
@@ -180,7 +194,7 @@ const questions = [
     "r",
     "s",
     "t"],
-    correct: 's',}
+    correct:1,}
 ]      
 
 
@@ -190,8 +204,7 @@ function endQuiz() {
     document.querySelector('.question').setAttribute('style', 'display: none')
     document.querySelector('.choices').setAttribute('style', 'display: none')
     //show final score
-
-
+    //prompt('You got ' + score + '/' + questions.length)
     //make button for submit score
 
 
@@ -279,5 +292,6 @@ if(shuffle.length = currentQuestionIndex +1) {
 
 //highscores button at top left corner??
 
+//document.querySelector('.box').innerHTML += '<h1> hey </h1>' ~display specific text in element~
 
 
