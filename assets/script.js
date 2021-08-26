@@ -1,16 +1,14 @@
-//change announce, question, answers for each page
 const h1 = document.querySelector('h1');
 const questionEl = document.querySelector('.question');
 const startBtn = document.querySelector('#start');
 const choices = document.querySelector('.choices')
 const hidden = document.querySelector('.quiz');
-const answerBtnEl  = document.querySelector('.choices');
 let timerEl = document.querySelector('.timer')
 const feedbackEl = document.querySelector('.feedback')
 
 
 startBtn.addEventListener('click', startGame);
-answerBtnEl.addEventListener('click', () => {
+choices.addEventListener('click', () => {
     currentQuestionIndex++
     setNextQuestion()
 })
@@ -74,24 +72,24 @@ function showQuestion(question) {
         button.innerHTML = answer
         choices.append(button)
         button.classList.add('btn')  
- // attach click event listener to each choice
+        // attach click event listener to each choice
         button.onclick = userAnswer
     })
 
 }
 
-function userAnswer() {
-    
-    if (answers.button === questions.correct) {
-        console.log(answers.button === questions.correct)
+function userAnswer(event) {
+    console.log(event.target)
+
+    if (event.target.innerHTML === questions[currentQuestionIndex].correct) {
         score++
         feedbackEl.textContent = "Correct!"
-    } else if (correct === false) 
-    console.log(correct === false)
+    } else if (event.target.innerHTML !== questions[currentQuestionIndex].correct) 
+    //console.log(userAnswer !== questions.correct)
         //timeLeft -= 10
         //timeLeft.textContent = timerEl
         feedbackEl.textContent = "Wrong"
-    
+
     feedbackEl.setAttribute("class", "feedback");
     setTimeout(function() {
       feedbackEl.setAttribute("class", "feedback hide");
@@ -101,30 +99,15 @@ function userAnswer() {
 
 function resetState() {
     clearStatusClass(document.body)
-    while (answerBtnEl.firstChild) {
-        answerBtnEl.removeChild
-        (answerBtnEl.firstChild)
+    while (choices.firstChild) {
+        choices.removeChild
+        (choices.firstChild)
     }
     if (currentQuestionIndex === questions.length) {
         endQuiz();
     }
 }
 
-
-/*
-function selectAnswer(e) {
-    const selectedButton = e.target
-    const correct = selectedButton.dataset.correct
-    setStatusClass(document.body, correct)
-    Array.from(answerBtnEl.children).forEach(button => {
-        setStatusClass(button, button.dataset.correct)
-    })
-    
-}
-
-
-
-*/
 
 function setStatusClass(element, correct) {
     clearStatusClass(element)
@@ -144,10 +127,6 @@ function setStatusClass(element, correct) {
 
 }
    
-   
-
-
-
 
 const questions = [
 
@@ -158,7 +137,7 @@ const questions = [
     "b",
     "c",
     "d"],
-    correct:"a",
+    correct: "a",
     },
     {
     question: "question2",
@@ -167,7 +146,7 @@ const questions = [
     "f", 
     "g", 
     "h"],
-    correct:1,
+    correct: "e",
     },
     {
     question: "question3",
@@ -176,7 +155,7 @@ const questions = [
     "j",
     "k",
     "l"],
-    correct:1,
+    correct: "i",
     },
     {
     question: "question4",
@@ -185,7 +164,7 @@ const questions = [
     "n",
     "o",
     "p"],
-    correct:1,
+    correct: "m",
     },
     {
     question: "question5",
@@ -194,7 +173,7 @@ const questions = [
     "r",
     "s",
     "t"],
-    correct:1,}
+    correct: "q",}
 ]      
 
 
