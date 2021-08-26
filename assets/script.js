@@ -16,6 +16,7 @@ choices.addEventListener('click', () => {
 let score = 0
 let answers = []
 let shuffle, currentQuestionIndex
+let timeLeft = 60
 
 
 
@@ -32,8 +33,7 @@ function startGame() {
     document.querySelector('h1').setAttribute('style', 'display: none')
     document.querySelector('p').setAttribute('style', 'display: none')
 
-    
-        var timeLeft = 60;
+        //timer
         let timeInterval = setInterval(function() {
             if (timeLeft > 1) {
                 timerEl.textContent = 'Timer: ' +timeLeft + ' seconds'
@@ -81,21 +81,21 @@ function showQuestion(question) {
 function userAnswer(event) {
     console.log(event.target)
 
-    if (event.target.innerHTML === questions[currentQuestionIndex].correct) {
-        score++
-        feedbackEl.textContent = "Correct!"
-    } else if (event.target.innerHTML !== questions[currentQuestionIndex].correct) 
-    //console.log(userAnswer !== questions.correct)
-        //timeLeft -= 10
-        //timeLeft.textContent = timerEl
-        feedbackEl.textContent = "Wrong"
-
     feedbackEl.setAttribute("class", "feedback");
     setTimeout(function() {
       feedbackEl.setAttribute("class", "feedback hide");
     }, 1000);
-    
-}
+
+    if (event.target.innerHTML === questions[currentQuestionIndex].correct) {
+        score++
+        feedbackEl.textContent = "Correct!"
+        console.log(score)
+    } else {
+        timeLeft -=10
+        feedbackEl.textContent = "Wrong"}}
+
+
+
 
 function resetState() {
     clearStatusClass(document.body)
