@@ -117,13 +117,13 @@ function resetState() {
 const questions = [
 
     {
-    question: "Which tag is used to insert a blank line?",
+    question: "Which display method is used for debugging?",
     answers: [
-    "br",
-    "hr",
-    "h1",
-    "p"],
-    correct: "br",
+    "console.log()",
+    "window.alert()",
+    "document.write()",
+    "window.print()"],
+    correct: "console.log()",
     },
     {
     question: "In JavaScript, what element is used to store multiple values in a single variable?",
@@ -135,13 +135,13 @@ const questions = [
     correct: "Arrays",
     },
     {
-    question: "Which is NOT as example of and HTML event?",
+    question: "Which conditional statement is used to specify a block of code to be executed if the condition is false?",
     answers: [
-    "An HTML button was clicked",
-    "An HTML input field was changed",
-    "An HTML web page has finished loading",
-    "Your power goes out"],
-    correct: "Your power goes out",
+    "if",
+    "else if",
+    "switch",
+    "else"],
+    correct: "else",
     },
     {
     question: "How many methods are there for extracting a part of a string?",
@@ -168,9 +168,7 @@ const userData = document.querySelector('#userdata')
 const highscoreBtn = document.querySelector('#highscorebtn')
 const highScoresList = document.getElementById("highScoresList")
 const highScores = JSON.parse(localStorage.getItem('highScores')) || []
-//const NO_OF_HIGH_SCORES = 5;
-//const HIGH_SCORES = 'highScores';
-//const highScoreString = localStorage.getItem(HIGH_SCORES);
+const currentScore = ''
 const username = document.getElementById('username');
 const submitBtn = document.getElementById('submitBtn');
 //const finalScore = document.getElementById('finalScore');
@@ -196,7 +194,7 @@ submitBtn.addEventListener('click', function saveHighScore(e) {
         console.log('save click')
         e.preventDefault();
         const currentScore = {
-            score: currentScore,
+            score: score,
             username: username
         }
         highScores.push(score)
