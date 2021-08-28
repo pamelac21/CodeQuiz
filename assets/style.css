@@ -9,13 +9,13 @@
 body {
     display: border-box;
     width: 90%;
-    background-color: skyblue;
+    background-color: darkslategray;
 }
 .box {
-    background-color: rgb(81, 160, 115);
+    background-color: cornsilk;
     display: flex;
     flex-direction: column;
-    width: 800px;
+    width: 900px;
     max-width: 80%;
     height: 300px;
     margin-top: 50px;
@@ -39,7 +39,8 @@ h1, p, .question {
 }
 
 #start {
-    font-size: 1.5em;
+    width: 40%;
+    font-size: 1.9em;
 }
 
 .btn, #home {
@@ -48,8 +49,8 @@ h1, p, .question {
     background-color: rgb(108, 2, 207);
     color: cornsilk;
     text-align: center;
-    width: 90%;
-    font-size: 1em;
+    width: 98%;
+    font-size: .8em;
     flex-direction: none;
     margin-bottom: 5px;
     justify-content: space-between;

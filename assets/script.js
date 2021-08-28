@@ -188,19 +188,15 @@ function endQuiz() {
     //show final score
     document.querySelector('h2').textContent = 'Game Over! Your Score ' + score + '/' + questions.length
     
-const highScores = JSON.parse(localStorage.getItem('highScores')) || []
-console.log(highScores)
-
-    
     //username.addEventListener('keyup', () => {
         //submitBtn.disabled = !username.value;
     //});
     
-    submitBtn.addEventListener('click', function saveHighScore(e) {
+submitBtn.addEventListener('click', function saveHighScore(e) {
         console.log('save click')
         e.preventDefault();
-        const score = {
-            score: score,
+        const currentScore = {
+            score: currentScore,
             username: username
         }
         highScores.push(score)
@@ -209,12 +205,6 @@ console.log(highScores)
 
         localStorage.setItem('highScores', JSON.stringify(highScores))
         console.log(highScores)
-
-        
-    })
-
-
-    highscoreBtn.addEventListener('click', () => {
 
 highScoresList.innerHTML = highScores
 .map(score => {
