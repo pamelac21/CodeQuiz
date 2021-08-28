@@ -5,17 +5,13 @@ const choices = document.querySelector('.choices')
 const hidden = document.querySelector('.quiz');
 let timerEl = document.querySelector('.timer')
 const feedbackEl = document.querySelector('.feedback')
-//const h2 = document.querySelector('h2')
-//const userData = document.querySelector('#userdata')
-//const highscoreBtn = document.querySelector('#highscore')
-//const submitBtn = document.querySelector('#submit')
-//let placeholder = document.querySelector('#placeholder')
 
 startBtn.addEventListener('click', startGame);
 choices.addEventListener('click', () => {
     currentQuestionIndex++
     setNextQuestion()
 })
+
 
 let score = 0
 let answers = []
@@ -106,6 +102,7 @@ function resetState() {
     }
     if (currentQuestionIndex === questions.length) {
         endQuiz();
+        return;
     }
 }
 
@@ -166,18 +163,15 @@ const questions = [
 const h2 = document.querySelector('h2')
 const userData = document.querySelector('#userdata')
 const highscoreBtn = document.querySelector('#highscorebtn')
-const highScoresList = document.getElementById("highScoresList")
+const highScoreLi = document.querySelector('#highScoreLi')
 const highScores = JSON.parse(localStorage.getItem('highScores')) || []
-const currentScore = ''
-const username = document.getElementById('username').value;
 const submitBtn = document.getElementById('submitBtn');
-//const finalScore = document.getElementById('finalScore');
-const mostRecentScore = localStorage.getItem('mostRecentScore');
 const homeBtn = document.querySelector('#home')
-const MAX_HIGH_SCORES = 3  
+
 
 
 function endQuiz() {
+    
     //hide timer+questions+answers
     document.querySelector('.quiz').setAttribute('style', 'display: none')
     document.querySelector('.question').setAttribute('style', 'display: none')
@@ -187,16 +181,15 @@ function endQuiz() {
     //show final score
     document.querySelector('h2').textContent = 'Game Over! Your Score ' + score + '/' + questions.length
     
-    //username.addEventListener('keyup', () => {
-        //submitBtn.disabled = !username.value;
-    //});
     
 submitBtn.addEventListener('click', function saveHighScore(e) {
         console.log('save click')
         e.preventDefault();
+        const username = document.getElementById('username').value;
+        const highScoreLi = document.querySelector('#highScoreLi')
         const currentScore = {
             score: score,
-            username: username
+            username: username,
         }
         highScores.push(currentScore)
         highScores.sort((a, b) => b.score - a.score)
@@ -205,16 +198,14 @@ submitBtn.addEventListener('click', function saveHighScore(e) {
         localStorage.setItem('highScores', JSON.stringify(highScores))
         console.log(highScores)
 
-highScoresList.innerHTML = highScores
+highScoreLi.innerHTML = highScores
 .map(score => {
- return `<li id="highScores">${score.username}-${score.score}</li>`
+ return `<li>${score.username}-${score.score}</li>`
 })
-//.join('')
-console.log(test)
+.join('')
    
     })
-
-   
+ 
 homeBtn.addEventListener('click', function() {
     window.location.assign('/')
 })
