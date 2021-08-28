@@ -117,49 +117,49 @@ function resetState() {
 const questions = [
 
     {
-    question: "question1",
+    question: "Which tag is used to insert a blank line?",
     answers: [
-    "a",
-    "b",
-    "c",
-    "d"],
-    correct: "a",
-    },
-    {
-    question: "question2",
-    answers: [
-    "e",
-    "f", 
-    "g", 
-    "h"],
-    correct: "e",
-    },
-    {
-    question: "question3",
-    answers: [
-    "i",
-    "j",
-    "k",
-    "l"],
-    correct: "i",
-    },
-    {
-    question: "question4",
-    answers: [
-    "m",
-    "n",
-    "o",
+    "br",
+    "hr",
+    "h1",
     "p"],
-    correct: "m",
+    correct: "br",
     },
     {
-    question: "question5",
+    question: "In JavaScript, what element is used to store multiple values in a single variable?",
     answers: [
-    "q",
-    "r",
-    "s",
-    "t"],
-    correct: "q",}
+    "Strings",
+    "Arrays", 
+    "Functions", 
+    "Boxes"],
+    correct: "Arrays",
+    },
+    {
+    question: "Which is NOT as example of and HTML event?",
+    answers: [
+    "An HTML button was clicked",
+    "An HTML input field was changed",
+    "An HTML web page has finished loading",
+    "Your power goes out"],
+    correct: "Your power goes out",
+    },
+    {
+    question: "How many methods are there for extracting a part of a string?",
+    answers: [
+    "3",
+    "6",
+    "1",
+    "12"],
+    correct: "3",
+    },
+    {
+    question: "Which of the following returns a random integer from 0 to 99?",
+    answers: [
+    "Math.floor(Math.random() * 101);",
+    "Math.floor(Math.random() * 10) + 1;",
+    "Math.floor(Math.random() * 100);",
+    "Math.floor(Math.random() * 100) + 1;"],
+    correct: "Math.floor(Math.random() * 100);",}
 ]      
 
 //GAME OVER
@@ -232,68 +232,3 @@ homeBtn.addEventListener('click', function() {
    
    
 }
-   
-   
-   
-   
-   
-   
-   
-   
-
-      
-       
-       
-     
-       
-       
-       
-       
-       
-       
-       
-       
- /*      
-       
-        if(placeholder.value === "") {
-            alert("Initials cannot be blank");
-            return false;
-        }else{
-            var savedScores = JSON.parse(localStorage.getItem("savedScores")) || [];
-                
-            savedScores.push(score);
-            localStorage.setItem("savedScores", JSON.stringify(savedScores));
-            loadHighScore();
-        }
-
-
-//FINISHED QUIZ save score to local storage
-//return score, txt box to enter name w/ submit button.
-
-
-        let savedScore = function() {
-          localStorage.setItem("score", JSON.stringify(score));
-         }
-         score = JSON.parse(score);
-
-
-
-
-
-//next pg = Highscores list and buttons to go home OR Clear Highscores.
-var loadHighScore = function() {
-    savedScores = localStorage.getItem("score");
-  
-    if (!savedScore) {
-      return;
-    }
-  
-    savedScore = JSON.parse(savedScores);
-  }
-//make it for high scores top 2
-    // loop through savedScore array
-for (var i = 0; i < savedScore.length; i++) {
-    // pass each task object into the `createScoreEl()` function
-    createScoreEl(savedScore[i]);}}
-    )}
-*/
