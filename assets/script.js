@@ -53,6 +53,7 @@ timeLeft -= 1;
         shuffle = questions.sort(() => Math.random() - .5)
         currentQuestionIndex = 0
         setNextQuestion()
+        return shuffle;
 }
 
 
