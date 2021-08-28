@@ -5,7 +5,11 @@ const choices = document.querySelector('.choices')
 const hidden = document.querySelector('.quiz');
 let timerEl = document.querySelector('.timer')
 const feedbackEl = document.querySelector('.feedback')
-
+//const h2 = document.querySelector('h2')
+//const userData = document.querySelector('#userdata')
+//const highscoreBtn = document.querySelector('#highscore')
+//const submitBtn = document.querySelector('#submit')
+//let placeholder = document.querySelector('#placeholder')
 
 startBtn.addEventListener('click', startGame);
 choices.addEventListener('click', () => {
@@ -50,9 +54,6 @@ document.querySelector('.timer').value = 60 - timeLeft;
 timeLeft -= 1;
 }, 1000)
 
-
-    
-
         shuffle = questions.sort(() => Math.random() - .5)
         currentQuestionIndex = 0
         setNextQuestion()
@@ -62,7 +63,6 @@ timeLeft -= 1;
 function setNextQuestion() {
     resetState() 
     showQuestion(shuffle[currentQuestionIndex])
-    
 }
 
 function showQuestion(question) {
@@ -75,7 +75,6 @@ function showQuestion(question) {
         // attach click event listener to each choice
         button.onclick = userAnswer
     })
-
 }
 
 function userAnswer(event) {
@@ -92,10 +91,12 @@ function userAnswer(event) {
         console.log(score)
     } else {
         timeLeft -=10
-        feedbackEl.textContent = "Wrong"}}
+        feedbackEl.textContent = "Wrong"
+        }
+    }
 
 
-
+//clear before next question && end quiz at end questions
 
 function resetState() {
     clearStatusClass(document.body)
@@ -108,24 +109,9 @@ function resetState() {
     }
 }
 
-
-function setStatusClass(element, correct) {
-    clearStatusClass(element)
-        if (correct) {
-            element.classList.add('correct')
-            document.getElementById('correct').style.visibility = 'visible';
-        } else {
-            element.classList.add('wrong')
-            document.querySelector('.wrong').setAttribute('style', 'display: block')
-        
-
-        }
-    }
     function clearStatusClass(element) {
-        element.classList.remove('correct')
-        element.classList.remove('wrong')
-
-}
+        element.classList.remove
+    }
    
 
 const questions = [
@@ -176,55 +162,116 @@ const questions = [
     correct: "q",}
 ]      
 
+//GAME OVER
+const h2 = document.querySelector('h2')
+const userData = document.querySelector('#userdata')
+const highscoreBtn = document.querySelector('#highscorebtn')
+const highScoresList = document.getElementById("highScoresList")
+const highScores = JSON.parse(localStorage.getItem('highScores')) || []
+//const NO_OF_HIGH_SCORES = 5;
+//const HIGH_SCORES = 'highScores';
+//const highScoreString = localStorage.getItem(HIGH_SCORES);
+const username = document.getElementById('username');
+const submitBtn = document.getElementById('submitBtn');
+//const finalScore = document.getElementById('finalScore');
+const mostRecentScore = localStorage.getItem('mostRecentScore');
+const homeBtn = document.querySelector('#home')
+const MAX_HIGH_SCORES = 3  
 
 function endQuiz() {
     //hide timer+questions+answers
     document.querySelector('.quiz').setAttribute('style', 'display: none')
     document.querySelector('.question').setAttribute('style', 'display: none')
     document.querySelector('.choices').setAttribute('style', 'display: none')
+    //show end screen
+    document.querySelector('.end').setAttribute('style', 'display: block')
     //show final score
-    //prompt('You got ' + score + '/' + questions.length)
-    //make button for submit score
+    document.querySelector('h2').textContent = 'Game Over! Your Score ' + score + '/' + questions.length
+    
+const highScores = JSON.parse(localStorage.getItem('highScores')) || []
+console.log(highScores)
+
+    
+    //username.addEventListener('keyup', () => {
+        //submitBtn.disabled = !username.value;
+    //});
+    
+    submitBtn.addEventListener('click', function saveHighScore(e) {
+        console.log('save click')
+        e.preventDefault();
+        const score = {
+            score: score,
+            username: username
+        }
+        highScores.push(score)
+        highScores.sort((a, b) => b.score - a.score)
+        highScores.splice(3)
+
+        localStorage.setItem('highScores', JSON.stringify(highScores))
+        console.log(highScores)
+
+        
+    })
 
 
+    highscoreBtn.addEventListener('click', () => {
+
+highScoresList.innerHTML = highScores
+.map(score => {
+ return `<li id="highScores">${score.username}-${score.score}</li>`
+})
+.join('')
+   
+    })
+
+   
+homeBtn.addEventListener('click', function() {
+    window.location.assign('/')
+})
+   
+   
+   
 }
+   
+   
+   
+   
+   
+   
+   
+   
 
+      
        
+       
+     
+       
+       
+       
+       
+       
+       
+       
+       
+ /*      
+       
+        if(placeholder.value === "") {
+            alert("Initials cannot be blank");
+            return false;
+        }else{
+            var savedScores = JSON.parse(localStorage.getItem("savedScores")) || [];
+                
+            savedScores.push(score);
+            localStorage.setItem("savedScores", JSON.stringify(savedScores));
+            loadHighScore();
+        }
 
-
-
-  /*//what to do when an answer is chosen by the user:: 
-    document.querySelector('answers').onclick = function() {
-      if(answer === correct, .correct is unhidden, score++)
-      if(a === wrong, .wrong is unhidden, 10 seconds decremented from timer)
-        currentQuestionIndex++ //load next question
-        setNextQuestion()
-    })*/
-
-
-
-/*
-           
-         for (var i = 0; i < questions.length; i++) {
-         // Compare answers
-            if (
-            (answer === correct)
-         ) {
-             // Increase score
-             score++;
-              // Alert the user
-              alert('Correct!');
-            } else {
-           alert('Wrong!');
-         }
-         }
-*/
 
 //FINISHED QUIZ save score to local storage
 //return score, txt box to enter name w/ submit button.
 
-/*
-        let saveScore = function() {
+
+        let savedScore = function() {
           localStorage.setItem("score", JSON.stringify(score));
          }
          score = JSON.parse(score);
@@ -238,39 +285,15 @@ var loadHighScore = function() {
     savedScores = localStorage.getItem("score");
   
     if (!savedScore) {
-      return false;
+      return;
     }
   
-    savedAcore = JSON.parse(savedScore);
+    savedScore = JSON.parse(savedScores);
   }
 //make it for high scores top 2
     // loop through savedScore array
 for (var i = 0; i < savedScore.length; i++) {
     // pass each task object into the `createScoreEl()` function
-    createScoreEl(savedScore[i]);
-  }
-
-
-//time counter in top right corner. make it DECREMENT-10 sec for each wrong answer and stop decrement at 0
-*/ 
-
-/*
-if(shuffle.length = currentQuestionIndex +1) {
-            currentQuestionIndex++
-            setNextQuestion()
-        } else {
-            //hide quiz
-            document.querySelector('.quiz').setAttribute('style', 'display: none')
-            document.querySelector('.question').setAttribute('style', 'display: none')
-            document.querySelector('.choices').setAttribute('style', 'display: none')
-            //show end screen
-            document.querySelector('#start').setAttribute('style', 'display: block')
-            startBtn.innerHTML = 'Return Home'
-        }
+    createScoreEl(savedScore[i]);}}
+    )}
 */
-
-//highscores button at top left corner??
-
-//document.querySelector('.box').innerHTML += '<h1> hey </h1>' ~display specific text in element~
-
-

@@ -12,22 +12,37 @@
     <section class="box">
     
         <h1>Coding Quiz</h1>
-            <p>"Try to answer the following questions within the time limit. Incorrect answers will penalize your time by 10 seconds."</p>
-            <div class="btn" id ="start">Start</div>
+        <p>"Try to answer the following questions within the time limit. Incorrect answers will penalize your time by 10 seconds."</p>
+        <div class="btn" id ="start">Start</div>
+
             <div class="timer quiz"></div>
-
             <div class="question quiz"></div>
-              
-     
-            <div class="choices quiz">
-                
-            </div>
+            <div class="choices quiz"></div>
 
-        </div>
+                <div class ="end">
+                    <h2></h2>
+                    <label for="userdata">Save High Score</label>
+                        <form>
+                            <input type="text" id="username" name="username" placeholder="Your Initials" />
+                            <button class="btn" type="submit" id="submitBtn">SUBMIT</button>
+                        </form>
+                        
+
+                    <h3>High Scores</h3>
+                    <ol>
+                        <li id="highScores"></li>
+                    </ol>
+
+                    <a class="btn" id="home" href="index.html">Go Home</a>
+                    
+
+                </div>
+        
     </section>
 
 
     <div class="feedback"></div>
+    
    
 
     <script src='assets\script.js'></script>  
