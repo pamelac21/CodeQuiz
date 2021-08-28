@@ -16,8 +16,12 @@ USAGE:
   -HTML
   -CSS
   -JavaScript
+  
+  
 Installation:
+
 Clone the repo: https://github.com/pamelac21/CodeQuiz.git
+  
   
 Prerequisites:
 To install this application, you will need a text editor. I recommend Visual Studio Code.
