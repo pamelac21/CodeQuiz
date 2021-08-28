@@ -7,6 +7,7 @@ ABOUT:
 
 
 USAGE:
+
   -When the start button is clicked, a timer starts and the user is presented with a question. When a question is answered, they are presented with a new question. When a question is answered incorrectly, time is subtracted from the clock. When all questions are answered or time runs out, the quiz ends. When the quiz is over, the user's score and initials can be saved.
 
 
