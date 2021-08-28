@@ -169,12 +169,13 @@ const highscoreBtn = document.querySelector('#highscorebtn')
 const highScoresList = document.getElementById("highScoresList")
 const highScores = JSON.parse(localStorage.getItem('highScores')) || []
 const currentScore = ''
-const username = document.getElementById('username');
+const username = document.getElementById('username').value;
 const submitBtn = document.getElementById('submitBtn');
 //const finalScore = document.getElementById('finalScore');
 const mostRecentScore = localStorage.getItem('mostRecentScore');
 const homeBtn = document.querySelector('#home')
 const MAX_HIGH_SCORES = 3  
+
 
 function endQuiz() {
     //hide timer+questions+answers
@@ -197,7 +198,7 @@ submitBtn.addEventListener('click', function saveHighScore(e) {
             score: score,
             username: username
         }
-        highScores.push(score)
+        highScores.push(currentScore)
         highScores.sort((a, b) => b.score - a.score)
         highScores.splice(3)
 
@@ -208,7 +209,8 @@ highScoresList.innerHTML = highScores
 .map(score => {
  return `<li id="highScores">${score.username}-${score.score}</li>`
 })
-.join('')
+//.join('')
+console.log(test)
    
     })
 
