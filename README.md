@@ -35,3 +35,5 @@ Contact:
 pamelac021@gmail.com 
 
 https://github.com/pamelac21
+
+References: Web Dev Simplified “Build a Quiz App (9) - Load and Display High Scores from Local Storage” YouTube, uploaded by Name of YouTube Account, 1/16/19, https://www.youtube.com/watch?v=jfOv18lCMmw&t=5s.
